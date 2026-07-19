@@ -1,0 +1,9 @@
+{
+  "name": "blue-tigers-fixtures",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blue Tigers fixture tracker with cross-device sync via Netlify Blobs",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

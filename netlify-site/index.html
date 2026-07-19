@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Blue Tigers — Upcoming Fixtures</title>
+<meta name="description" content="Upcoming matches for the Indian national football team.">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+  :root{
+    --navy-deep:   #050f24;
+    --navy:        #0b1f44;
+    --navy-soft:   #142a5c;
+    --line:        rgba(247,249,252,0.12);
+    --ink:         #f4f7fc;
+    --ink-dim:     #9db0d6;
+    --saffron:     #ff7a1a;
+    --gold:        #ffb703;
+    --win-green:   #2ecc71;
+    --radius:      14px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--navy-deep);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img, svg{ max-width:100%; }
+
+  .display{ font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:0.01em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- Tiger-stripe motif (signature element) ---------- */
+  .stripes{
+    position:absolute; inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  .stripes span{
+    position:absolute;
+    top:-20%;
+    height:140%;
+    width:38px;
+    background:linear-gradient(180deg, transparent, var(--saffron) 35%, var(--saffron) 65%, transparent);
+    opacity:0.09;
+    transform:skewX(-14deg);
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:relative;
+    padding:18px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    border-bottom:1px solid var(--line);
+    z-index:2;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; min-width:0; }
+  .crest{
+    flex:none;
+    width:38px; height:38px;
+    border-radius:50%;
+    background:conic-gradient(from 180deg, var(--saffron), var(--gold), var(--saffron));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Anton', sans-serif;
+    color:var(--navy-deep);
+    font-size:15px;
+  }
+  .brand-name{ font-size:13px; letter-spacing:0.12em; color:var(--ink-dim); text-transform:uppercase; min-width:0; }
+  .brand-name b{ color:var(--ink); display:block; font-size:16px; letter-spacing:0.04em; white-space:nowrap; }
+  nav{ display:flex; flex-wrap:wrap; gap:0 22px; }
+  nav a{
+    color:var(--ink-dim);
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav a:hover{ color:var(--saffron); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:56px 6vw 44px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:''; width:7px; height:7px; border-radius:50%;
+    background:var(--win-green);
+    box-shadow:0 0 0 4px rgba(46,204,113,0.18);
+    flex:none;
+  }
+  .hero h1{
+    margin:0 0 10px;
+    font-size:clamp(34px, 9vw, 84px);
+    line-height:0.98;
+    max-width:14ch;
+    word-break:break-word;
+  }
+  .hero h1 em{ font-style:normal; color:var(--saffron); }
+  .hero p.lede{
+    max-width:560px;
+    color:var(--ink-dim);
+    font-size:15.5px;
+    line-height:1.6;
+    margin:0 0 32px;
+  }
+
+  .countdown{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .countdown .cell{
+    background:var(--navy);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    min-width:70px;
+    flex:1 1 70px;
+    max-width:110px;
+    text-align:center;
+  }
+  .countdown .cell .num{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:clamp(20px, 6vw, 30px);
+    color:var(--ink);
+    line-height:1;
+  }
+  .countdown .cell .lab{
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-top:6px;
+  }
+  .countdown-caption{
+    margin-top:14px;
+    font-size:13px;
+    color:var(--ink-dim);
+    line-height:1.5;
+  }
+  .countdown-caption b{ color:var(--ink); }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    padding:22px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch; }
+  .chip{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-dim);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .15s ease;
+    white-space:nowrap;
+  }
+  .chip:hover{ border-color:var(--saffron); color:var(--ink); }
+  .chip.active{ background:var(--saffron); border-color:var(--saffron); color:var(--navy-deep); font-weight:600; }
+
+  .add-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    cursor:pointer;
+    flex:none;
+    white-space:nowrap;
+  }
+  .add-btn:hover{ filter:brightness(1.08); }
+
+  /* ---------- Match list ---------- */
+  .matches{
+    padding:8px 6vw 80px;
+    display:flex;
+    flex-direction:column;
+  }
+  .match-row{
+    display:grid;
+    grid-template-columns:100px 1fr auto 90px auto;
+    align-items:center;
+    gap:22px;
+    padding:22px;
+    border-bottom:1px solid var(--line);
+    transition:background .15s ease;
+  }
+  .match-row:hover{ background:rgba(255,255,255,0.02); }
+
+  .date-block{
+    text-align:center;
+    border-right:1px solid var(--line);
+    padding-right:22px;
+  }
+  .date-block .day{
+    font-family:'Anton', sans-serif;
+    font-size:30px;
+    line-height:1;
+    color:var(--ink);
+  }
+  .date-block .mon{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--saffron);
+    margin-top:4px;
+  }
+  .date-block .yr{
+    font-size:10px;
+    color:var(--ink-dim);
+    margin-top:2px;
+  }
+
+  .fixture-main{ min-width:0; }
+  .fixture-main .comp{
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp .tag{
+    background:var(--navy-soft);
+    color:var(--gold);
+    padding:2px 8px;
+    border-radius:5px;
+    font-size:10px;
+    letter-spacing:0.06em;
+  }
+  .fixture-teams{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    font-weight:600;
+    flex-wrap:wrap;
+    word-break:break-word;
+  }
+  .fixture-teams .vs{
+    color:var(--ink-dim);
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:0.08em;
+  }
+  .fixture-teams .team-a{ color:var(--ink); }
+  .fixture-teams .team-b{ color:var(--ink); }
+  .fixture-venue{
+    font-size:12.5px;
+    color:var(--ink-dim);
+    margin-top:6px;
+  }
+
+  .kickoff{
+    text-align:right;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .kickoff .time{
+    font-size:18px;
+    color:var(--ink);
+  }
+  .kickoff .ist{
+    font-size:10px;
+    color:var(--ink-dim);
+    letter-spacing:0.08em;
+  }
+
+  .status-pill{
+    justify-self:end;
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:999px;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .status-confirmed{ background:rgba(46,204,113,0.12); color:var(--win-green); border:1px solid rgba(46,204,113,0.3); }
+  .status-tentative{ background:rgba(255,183,3,0.1); color:var(--gold); border:1px solid rgba(255,183,3,0.3); }
+
+  .row-actions{
+    display:flex;
+    gap:6px;
+    justify-self:end;
+  }
+  .row-actions button{
+    width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:7px;
+    color:var(--ink-dim);
+    cursor:pointer;
+    transition:all .15s ease;
+    padding:0;
+  }
+  .row-actions button:hover{ color:var(--ink); border-color:var(--ink-dim); }
+  .row-actions .del-btn:hover{ color:#ff5c5c; border-color:#ff5c5c; }
+  .row-actions svg{ width:14px; height:14px; }
+
+  .empty-state{
+    padding:60px 20px;
+    text-align:center;
+    color:var(--ink-dim);
+  }
+
+  /* ---------- Add match panel ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(3,8,20,0.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    padding:16px;
+  }
+  .overlay.open{ display:flex; }
+  .panel{
+    background:var(--navy);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    width:100%;
+    max-width:440px;
+    padding:24px;
+    max-height:92vh;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .panel h3{ margin:0 0 4px; font-size:20px; }
+  .panel p.hint{ margin:0 0 20px; color:var(--ink-dim); font-size:13px; line-height:1.5; }
+  .field{ margin-bottom:14px; display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); }
+  .field input, .field select{
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:10px 12px;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:16px;
+    width:100%;
+  }
+  .field input:focus, .field select:focus{ outline:2px solid var(--saffron); outline-offset:1px; }
+  .field-row{ display:flex; gap:12px; }
+  .field-row .field{ flex:1; min-width:0; }
+  .vs-divider{
+    text-align:center;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin:-6px 0 14px;
+  }
+  .field-checkbox{ margin-top:-4px; }
+  .checkbox-label{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center;
+    gap:9px;
+    font-size:13px;
+    color:var(--ink-dim);
+    text-transform:none !important;
+    letter-spacing:normal !important;
+    cursor:pointer;
+  }
+  .checkbox-label input[type="checkbox"]{
+    width:16px; height:16px;
+    accent-color:var(--saffron);
+    cursor:pointer;
+    flex:none;
+  }
+  .field input:disabled{ opacity:0.4; cursor:not-allowed; }
+  .panel-actions{ display:flex; gap:10px; margin-top:20px; }
+  .btn-primary{
+    flex:1; background:var(--saffron); color:var(--navy-deep);
+    border:none; padding:12px; border-radius:8px; font-weight:600;
+    cursor:pointer; font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .btn-secondary{
+    flex:1; background:transparent; color:var(--ink-dim);
+    border:1px solid var(--line); padding:12px; border-radius:8px;
+    cursor:pointer; font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .btn-secondary:hover{ color:var(--ink); }
+
+  /* ---------- Squad status + Pick XI trigger ---------- */
+  .squad-status{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:8px;
+    font-size:11.5px;
+    color:var(--ink-dim);
+  }
+  .squad-status .ss-item{ display:inline-flex; align-items:center; gap:6px; }
+  .squad-status .ss-dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--ink-dim);
+    flex:none;
+  }
+  .squad-status .ss-item.ss-full .ss-dot{ background:var(--win-green); }
+  .squad-status .ss-item.ss-full{ color:var(--win-green); }
+
+  .row-actions .xi-btn{ width:auto; padding:0 12px; gap:6px; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; font-weight:600; color:var(--gold); border-color:rgba(255,183,3,0.35); }
+  .row-actions .xi-btn:hover{ color:var(--navy-deep); background:var(--gold); border-color:var(--gold); }
+  .row-actions .xi-btn svg{ width:13px; height:13px; }
+
+  /* ---------- Squad / Best XI modal ---------- */
+  .squad-panel{ max-width:640px; padding:0; overflow:hidden; display:flex; flex-direction:column; }
+  .squad-head{ padding:22px 24px 0; }
+  .squad-head h3{ margin:0 0 4px; font-size:19px; }
+  .squad-head p.hint{ margin:0 0 18px; }
+  .squad-tabs{ display:flex; gap:8px; padding:0 24px; border-bottom:1px solid var(--line); }
+  .squad-tab{
+    flex:1;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid transparent;
+    color:var(--ink-dim);
+    padding:12px 6px 14px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    cursor:pointer;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .squad-tab.active{ color:var(--saffron); border-bottom-color:var(--saffron); }
+  .squad-tab:hover:not(.active){ color:var(--ink); }
+
+  .squad-body{ padding:20px 24px 24px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+
+  .squad-controls{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+  }
+  .formation-field{ margin-bottom:0; min-width:150px; }
+  .formation-field label{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); display:block; margin-bottom:6px; }
+  #formationSelect{
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:9px 12px;
+    border-radius:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:14px;
+    min-width:150px;
+  }
+  #formationSelect:focus{ outline:2px solid var(--saffron); outline-offset:1px; }
+
+  .squad-counter{ text-align:right; }
+  .squad-counter .count-label{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); display:block; margin-bottom:4px; }
+  .squad-counter .count-num{ font-family:'JetBrains Mono', monospace; font-size:16px; font-weight:700; color:var(--gold); }
+  .squad-counter .count-num.count-complete{ color:var(--win-green); }
+
+  .line-breakdown{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .line-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:11px;
+    color:var(--ink-dim);
+  }
+  .line-pill .lp-tag{ font-weight:700; letter-spacing:0.04em; }
+  .line-pill.lp-ok{ border-color:rgba(46,204,113,0.4); color:var(--win-green); }
+  .line-pill.lp-ok .lp-tag{ color:var(--win-green); }
+
+  /* ---------- Pitch ---------- */
+  .pitch{
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 8%),
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.045) 0 11.11%, rgba(0,0,0,0.05) 11.11% 22.22%),
+      linear-gradient(180deg, #14532d, #0a3319);
+    border:2px solid rgba(255,255,255,0.28);
+    border-radius:12px;
+    padding:18px 12px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:6px;
+    min-height:360px;
+    margin-bottom:18px;
+    box-shadow:inset 0 0 40px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  /* center circle + halfway line */
+  .pitch::before{
+    content:'';
+    position:absolute;
+    left:0; right:0; top:50%;
+    border-top:1.5px solid rgba(255,255,255,0.28);
+    pointer-events:none;
+  }
+  .pitch::after{
+    content:'';
+    position:absolute;
+    left:50%; top:50%;
+    width:64px; height:64px;
+    border:1.5px solid rgba(255,255,255,0.28);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  /* penalty box at the goal (bottom) end */
+  .pitch .goal-box{
+    position:absolute;
+    left:50%; bottom:0;
+    width:64%; height:15%;
+    max-width:230px;
+    border:1.5px solid rgba(255,255,255,0.28);
+    border-bottom:none;
+    transform:translateX(-50%);
+    pointer-events:none;
+    border-radius:2px 2px 0 0;
+  }
+  .pitch .goal-box::before{
+    content:'';
+    position:absolute;
+    left:50%; bottom:0;
+    width:60%; height:55%;
+    border:1.5px solid rgba(255,255,255,0.28);
+    border-bottom:none;
+    transform:translateX(-50%);
+  }
+
+  .pitch-line{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+    position:relative;
+    z-index:1;
+  }
+  .row-tag{
+    font-size:8.5px;
+    font-weight:700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.55);
+  }
+  .pitch-row{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:10px;
+    flex-wrap:wrap;
+    position:relative;
+    z-index:1;
+    padding:2px 0;
+    width:100%;
+  }
+  .pitch-empty{
+    margin:auto;
+    color:rgba(244,247,252,0.6);
+    font-size:12.5px;
+    text-align:center;
+    padding:0 24px;
+    position:relative;
+    z-index:1;
+  }
+  .player-chip{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+    width:56px;
+    position:relative;
+    z-index:1;
+  }
+  .player-chip.empty-slot{ opacity:0.6; }
+
+  /* ---------- Jersey icon (actual shirt shape, not a plain circle) ---------- */
+  .jersey-svg{
+    width:36px; height:36px;
+    display:block;
+    filter:drop-shadow(0 3px 5px rgba(0,0,0,0.45));
+  }
+  .jersey-svg .jersey-path{ stroke-width:1.6; stroke-linejoin:round; }
+  .jersey-svg .jersey-num{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:800;
+    font-size:12.5px;
+    text-anchor:middle;
+  }
+  /* Team A — navy shirt, gold trim & number */
+  .jersey-teamA .jersey-path{ fill:var(--navy-soft); stroke:var(--gold); }
+  .jersey-teamA .jersey-num{ fill:var(--gold); }
+  /* Team B — off-white shirt, navy trim & number */
+  .jersey-teamB .jersey-path{ fill:#f4f0e6; stroke:var(--navy); }
+  .jersey-teamB .jersey-num{ fill:var(--navy); }
+  /* Goalkeeper — always a distinct kit regardless of team */
+  .jersey-gk .jersey-path{ fill:#1f7a4d; stroke:#eafff2; }
+  .jersey-gk .jersey-num{ fill:#eafff2; }
+  /* Empty formation slot */
+  .jersey-empty-svg .jersey-path{ fill:rgba(255,255,255,0.06); stroke:rgba(255,255,255,0.35); stroke-dasharray:3 3; }
+  .jersey-empty-svg{ filter:none; opacity:0.8; }
+
+  .p-name{
+    font-size:9.5px;
+    color:#fff;
+    text-align:center;
+    line-height:1.2;
+    text-shadow:0 1px 3px rgba(0,0,0,0.75);
+    word-break:break-word;
+    max-width:56px;
+  }
+  .p-name.p-name-empty{ color:rgba(255,255,255,0.45); font-style:italic; }
+
+  .squad-add-form{
+    display:flex;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .squad-add-form input{
+    flex:1; min-width:0;
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:9px 12px;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:14px;
+  }
+  .squad-add-form select{
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:9px 8px;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:13px;
+  }
+  .squad-add-form button{
+    background:var(--saffron);
+    color:var(--navy-deep);
+    border:none;
+    padding:9px 14px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    flex:none;
+  }
+  .squad-add-form input:focus, .squad-add-form select:focus{ outline:2px solid var(--saffron); outline-offset:1px; }
+
+  .roster{ display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto; padding-right:2px; }
+  .roster-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 10px;
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    border-radius:8px;
+    transition:border-color .15s ease;
+  }
+  .roster-row.is-starting{ border-color:rgba(46,204,113,0.4); }
+  .roster-check input{ width:17px; height:17px; accent-color:var(--win-green); cursor:pointer; flex:none; }
+  .roster-num{
+    width:34px; flex:none;
+    background:var(--navy-soft);
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; font-weight:700;
+    color:var(--gold);
+    text-align:center;
+    padding:5px 2px;
+    -moz-appearance:textfield;
+  }
+  .roster-num::-webkit-outer-spin-button,
+  .roster-num::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .roster-num:focus{ outline:2px solid var(--saffron); outline-offset:1px; }
+  .roster-name{ flex:1; min-width:0; font-size:13.5px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .roster-pos{
+    font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-dim);
+    background:var(--navy-soft);
+    padding:3px 7px;
+    border-radius:5px;
+    flex:none;
+  }
+  .roster-pos.pos-GK{ color:var(--gold); }
+  .roster-pos.pos-DEF{ color:#7dd3fc; }
+  .roster-pos.pos-MID{ color:var(--win-green); }
+  .roster-pos.pos-FWD{ color:#ff8fa3; }
+  .roster-del{
+    width:26px; height:26px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--ink-dim); cursor:pointer; font-size:13px; line-height:1; padding:0;
+  }
+  .roster-del:hover{ color:#ff5c5c; border-color:#ff5c5c; }
+  .roster-empty{ text-align:center; color:var(--ink-dim); font-size:13px; padding:20px 10px; }
+
+  .squad-foot{ padding:16px 24px 22px; border-top:1px solid var(--line); }
+
+  footer{
+    padding:22px 6vw;
+    color:var(--ink-dim);
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    line-height:1.5;
+  }
+  footer a{ color:var(--ink-dim); }
+  .storage-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    letter-spacing:0.02em;
+  }
+  .storage-badge::before{
+    content:'';
+    width:6px; height:6px;
+    border-radius:50%;
+    flex:none;
+    background:var(--ink-dim);
+  }
+  .storage-badge.ok{ color:var(--win-green); }
+  .storage-badge.ok::before{ background:var(--win-green); box-shadow:0 0 0 3px rgba(46,204,113,0.18); }
+  .storage-badge.warn{ color:var(--gold); }
+  .storage-badge.warn::before{ background:var(--gold); box-shadow:0 0 0 3px rgba(255,183,3,0.18); }
+  .storage-wrap{ display:flex; flex-direction:column; gap:2px; align-items:center; }
+  .storage-debug{
+    font-size:9.5px;
+    color:var(--ink-dim);
+    max-width:260px;
+    text-align:center;
+    line-height:1.4;
+  }
+
+  /* ---------- Tablet ---------- */
+  @media (max-width:900px){
+    .match-row{ grid-template-columns:80px 1fr auto; }
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:720px){
+    header{ padding:16px 5vw; }
+    .brand-name{ font-size:11px; }
+    .brand-name b{ font-size:14px; }
+    nav{ gap:0 16px; }
+    nav a{ font-size:12px; }
+
+    .hero{ padding:40px 5vw 32px; }
+    .hero p.lede{ font-size:14.5px; margin-bottom:26px; }
+
+    .toolbar{ padding:18px 5vw; flex-direction:column; align-items:stretch; }
+    .filters{ overflow-x:auto; flex-wrap:nowrap; padding-bottom:4px; }
+    .add-btn{ width:100%; padding:12px 18px; }
+
+    .matches{ padding:6px 5vw 60px; }
+    .match-row{
+      grid-template-columns:56px 1fr;
+      grid-template-areas:
+        "date main"
+        "date kickoff"
+        "date status"
+        "date actions";
+      row-gap:10px;
+      column-gap:14px;
+      padding:18px 4px;
+    }
+    .date-block{ grid-area:date; padding-right:12px; }
+    .date-block .day{ font-size:24px; }
+    .fixture-main{ grid-area:main; }
+    .fixture-teams{ font-size:16.5px; }
+    .kickoff{ grid-area:kickoff; text-align:left; display:block; }
+    .kickoff .time{ font-size:15px; }
+    .status-pill{ grid-area:status; justify-self:start; }
+    .row-actions{ grid-area:actions; justify-self:start; }
+
+    .overlay{ align-items:flex-end; padding:0; }
+    .panel{ max-width:100%; border-radius:var(--radius) var(--radius) 0 0; max-height:88vh; }
+    .field-row{ flex-direction:column; gap:14px; }
+
+    .squad-panel{ max-height:92vh; }
+    .squad-head{ padding:18px 18px 0; }
+    .squad-tabs{ padding:0 18px; }
+    .squad-tab{ font-size:12px; padding:10px 4px 12px; }
+    .squad-body{ padding:16px 18px 20px; }
+    .squad-foot{ padding:14px 18px 18px; }
+    .squad-controls{ align-items:stretch; }
+    .squad-counter{ text-align:left; }
+    .formation-field{ min-width:0; flex:1 1 100%; }
+    #formationSelect{ width:100%; }
+    .pitch{ min-height:300px; padding:14px 6px 10px; gap:4px; }
+    .pitch-row{ gap:8px; }
+    .pitch-line{ gap:2px; }
+    .row-tag{ font-size:8px; }
+    .player-chip{ width:44px; }
+    .jersey-svg{ width:28px; height:28px; }
+    .jersey-svg .jersey-num{ font-size:11px; }
+    .p-name{ font-size:8px; max-width:44px; }
+    .squad-add-form{ flex-wrap:wrap; }
+    .squad-add-form input[type="text"]{ flex:1 1 100%; }
+    .roster-num{ width:30px; }
+
+    footer{ flex-direction:column; padding:20px 5vw; }
+    .storage-wrap{ align-items:flex-start; }
+    .storage-debug{ text-align:left; max-width:100%; }
+  }
+
+  @media (max-width:420px){
+    .hero h1{ font-size:clamp(30px, 11vw, 44px); }
+    .countdown .cell{ min-width:64px; padding:10px 8px; }
+    .crest{ width:32px; height:32px; font-size:13px; }
+
+    .squad-controls{ gap:10px; }
+    .pitch{ min-height:290px; padding:12px 4px 8px; }
+    .pitch-row{ gap:6px; }
+    .player-chip{ width:36px; }
+    .jersey-svg{ width:24px; height:24px; }
+    .jersey-svg .jersey-num{ font-size:9.5px; }
+    .p-name{ font-size:7.5px; max-width:36px; }
+    .line-pill{ font-size:10px; padding:4px 8px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="crest">BT</div>
+    <div class="brand-name">Indian Football Fixture Tracker<b>Blue Tigers</b></div>
+  </div>
+  <nav>
+    <a href="#fixtures">Fixtures</a>
+    <a href="#" id="openAddNav">Add match</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="stripes" id="stripes"></div>
+  <div class="eyebrow">Next Football Match</div>
+  <h1 class="display">Upcoming <em>Fixtures</em></h1>
+  <p class="lede">Every confirmed and provisional fixture — kickoff times shown in IST. Track the national team, clubs, or any fixture you like.</p>
+
+  <div class="countdown" id="countdown">
+    <div class="cell"><div class="num" id="cd-days">--</div><div class="lab">Days</div></div>
+    <div class="cell"><div class="num" id="cd-hours">--</div><div class="lab">Hours</div></div>
+    <div class="cell"><div class="num" id="cd-mins">--</div><div class="lab">Mins</div></div>
+    <div class="cell"><div class="num" id="cd-secs">--</div><div class="lab">Secs</div></div>
+  </div>
+  <div class="countdown-caption" id="countdown-caption"></div>
+</section>
+
+<div class="toolbar" id="fixtures">
+  <div class="filters" id="filters">
+    <button class="chip active" data-filter="all">All</button>
+  </div>
+  <button class="add-btn" id="openAddBtn">+ Add match</button>
+</div>
+
+<div class="matches" id="matchList"></div>
+
+<footer>
+  <span>Data entered manually — verify against <a href="https://www.the-aiff.com/" target="_blank" rel="noopener">the-aiff.com</a> before matchday.</span>
+  <span class="storage-wrap">
+    <span id="storageBadge" class="storage-badge">Checking storage…</span>
+    <span id="storageDebug" class="storage-debug"></span>
+  </span>
+  <span>Built for Blue Tigers fans 🐯</span>
+</footer>
+
+<!-- Add match modal -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <h3 class="display" id="panelTitle">Add a match</h3>
+    <p class="hint" id="panelHint">Synced automatically — the same data shows up on every device that opens this page.</p>
+    <form id="matchForm">
+      <div class="field-row">
+        <div class="field">
+          <label for="teamA">Team A</label>
+          <input type="text" id="teamA" placeholder="e.g. India" required>
+        </div>
+        <div class="field">
+          <label for="teamB">Team B</label>
+          <input type="text" id="teamB" placeholder="e.g. Tajikistan" required>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="field">
+          <label for="time">Kickoff (IST)</label>
+          <input type="time" id="time" required>
+        </div>
+      </div>
+      <div class="field field-checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" id="timeTBD">
+          <span>Kickoff time is uncertain / not announced yet</span>
+        </label>
+      </div>
+      <div class="field">
+        <label for="competition">Competition</label>
+        <input type="text" id="competition" placeholder="e.g. FIFA Friendly, SAFF Championship" required>
+      </div>
+      <div class="field">
+        <label for="venue">Venue</label>
+        <input type="text" id="venue" placeholder="e.g. Salt Lake Stadium, Kolkata">
+      </div>
+      <div class="field">
+        <label for="statusSel">Status</label>
+        <select id="statusSel">
+          <option value="confirmed">Confirmed</option>
+          <option value="tentative" selected>Tentative</option>
+        </select>
+      </div>
+      <div class="panel-actions">
+        <button type="button" class="btn-secondary" id="cancelAdd">Cancel</button>
+        <button type="submit" class="btn-primary" id="submitBtn">Add match</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Best XI modal -->
+<div class="overlay" id="squadOverlay">
+  <div class="panel squad-panel">
+    <div class="squad-head">
+      <h3 class="display" id="squadTitle">Pick Best XI</h3>
+      <p class="hint">Choose a formation, build the squad, then tick a box to slot a player into the pitch (max 11). Synced across every device automatically.</p>
+    </div>
+    <div class="squad-tabs">
+      <button type="button" class="squad-tab active" id="squadTabA">Team A</button>
+      <button type="button" class="squad-tab" id="squadTabB">Team B</button>
+    </div>
+    <div class="squad-body">
+      <div class="squad-controls">
+        <div class="field formation-field">
+          <label for="formationSelect">Formation</label>
+          <select id="formationSelect"></select>
+        </div>
+        <div class="squad-counter">
+          <span class="count-label">Starting XI</span>
+          <span class="count-num" id="squadCounter">0 / 11 selected</span>
+        </div>
+      </div>
+
+      <div class="line-breakdown" id="lineBreakdown"></div>
+
+      <div class="pitch" id="pitchEl"></div>
+
+      <form id="squadAddForm" class="squad-add-form">
+        <input type="text" id="squadNameInput" placeholder="Player name" required>
+        <select id="squadPosSelect">
+          <option value="GK">GK</option>
+          <option value="DEF">DEF</option>
+          <option value="MID" selected>MID</option>
+          <option value="FWD">FWD</option>
+        </select>
+        <button type="submit">+ Add</button>
+      </form>
+
+      <div class="roster" id="rosterEl"></div>
+    </div>
+    <div class="squad-foot">
+      <button type="button" class="btn-primary" id="squadCloseBtn" style="width:100%;">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ------------------------------------------------------------------
+  // MATCH DATA — edit this array to update the default fixture list
+  // permanently (this is what a fresh browser with no saved data sees).
+  // date format: 'YYYY-MM-DD', time format: 24hr 'HH:MM' (IST)
+  // status: 'confirmed' | 'tentative'
+  // timeTBD: true if kickoff time hasn't been announced (time can be "")
+  // teamA / teamB: the two sides in the fixture — edit freely, not
+  // locked to India, so you can track club matches or any other team.
+  // ------------------------------------------------------------------
+  const DEFAULT_MATCHES = [
+    {
+      id: "m-2026-09-03-mongolia",
+      teamA: "India",
+      teamB: "Mongolia",
+      competition: "FIFA Friendly",
+      date: "2026-09-03",
+      time: "18:00",
+      timeTBD: false,
+      venue: "Venue TBC",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-09-08-tbc",
+      teamA: "India",
+      teamB: "TBC",
+      competition: "FIFA Friendly",
+      date: "2026-09-08",
+      time: "",
+      timeTBD: true,
+      venue: "Venue TBC",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-09-21-asean1",
+      teamA: "India",
+      teamB: "TBC (Group Stage)",
+      competition: "FIFA ASEAN Cup 2026",
+      date: "2026-09-21",
+      time: "19:00",
+      timeTBD: false,
+      venue: "Venue TBC",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-09-27-asean2",
+      teamA: "India",
+      teamB: "TBC (Group Stage)",
+      competition: "FIFA ASEAN Cup 2026",
+      date: "2026-09-27",
+      time: "19:00",
+      timeTBD: false,
+      venue: "Venue TBC",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-11-04-saff1",
+      teamA: "India",
+      teamB: "TBC",
+      competition: "SAFF Championship 2026",
+      date: "2026-11-04",
+      time: "19:30",
+      timeTBD: false,
+      venue: "Dhaka, Bangladesh",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-11-08-saff2",
+      teamA: "India",
+      teamB: "TBC",
+      competition: "SAFF Championship 2026",
+      date: "2026-11-08",
+      time: "19:30",
+      timeTBD: false,
+      venue: "Dhaka, Bangladesh",
+      status: "tentative"
+    },
+    {
+      id: "m-2026-11-17-saff3",
+      teamA: "India",
+      teamB: "TBC",
+      competition: "SAFF Championship 2026",
+      date: "2026-11-17",
+      time: "19:30",
+      timeTBD: false,
+      venue: "Dhaka, Bangladesh",
+      status: "tentative"
+    }
+  ];
+
+  const STORAGE_KEY = "blueTigerFixtures";
+  const SQUAD_KEY = "blueTigerSquads";
+
+  function genId(){
+    return "m-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2,8);
+  }
+
+  function cloneDefaults(){
+    return JSON.parse(JSON.stringify(DEFAULT_MATCHES));
+  }
+
+  let MATCHES = cloneDefaults();
+  let SQUADS = {};
+
+  // Two possible cross-device backends, tried in order:
+  //  1) window.storage       — Anthropic's artifact storage, present only
+  //     inside Claude's own preview iframe.
+  //  2) /.netlify/functions/data — a small serverless function (see
+  //     netlify/functions/data.js) backed by Netlify Blobs, present once
+  //     this site is deployed on Netlify.
+  // If neither is reachable (e.g. opened as a bare local file), everything
+  // falls back to in-memory only for that session — never crashes, just
+  // won't remember changes. No browser localStorage is used anywhere.
+  let STORAGE_MODE = "memory"; // "claude" | "netlify" | "memory"
+  let STORAGE_DEBUG = ""; // human-readable reason, shown as a tooltip on the badge
+  const NETLIFY_FN = "/.netlify/functions/data";
+
+  // Presence of window.storage isn't proof it actually works — some preview
+  // contexts expose the object but calls silently fail. So we do a real
+  // write-then-read round trip and only trust it if that succeeds.
+  async function testClaudeStorage(){
+    if(typeof window === "undefined" || !window.storage){
+      STORAGE_DEBUG = "window.storage is not present in this context.";
+      return false;
+    }
+    try{
+      const probeKey = "__bt_storage_probe__";
+      const probeVal = "ok-" + Date.now();
+      await window.storage.set(probeKey, probeVal, true);
+      const result = await window.storage.get(probeKey, true);
+      if(result && result.value === probeVal) return true;
+      STORAGE_DEBUG = "window.storage exists but the write/read check didn't match — set() or get() isn't behaving as expected here.";
+      return false;
+    }catch(e){
+      STORAGE_DEBUG = "window.storage threw an error: " + (e && e.message ? e.message : e);
+      return false;
+    }
+  }
+
+  async function hasNetlifyFunction(){
+    try{
+      const res = await fetch(`${NETLIFY_FN}?key=__ping__`, { method: "GET" });
+      if(!res.ok){ STORAGE_DEBUG = `Netlify function replied with status ${res.status}.`; }
+      return res.ok;
+    }catch(e){
+      STORAGE_DEBUG = "No Netlify function reachable at " + NETLIFY_FN + " (expected here in Claude's preview, or if not yet deployed).";
+      return false;
+    }
+  }
+
+  async function detectStorageMode(){
+    const claudeOk = await testClaudeStorage();
+    if(claudeOk){ STORAGE_MODE = "claude"; STORAGE_DEBUG = "Using Claude's artifact storage."; return; }
+    const claudeReason = STORAGE_DEBUG;
+
+    const netlifyOk = await hasNetlifyFunction();
+    if(netlifyOk){ STORAGE_MODE = "netlify"; STORAGE_DEBUG = "Using the Netlify function."; return; }
+    const netlifyReason = STORAGE_DEBUG;
+
+    STORAGE_MODE = "memory";
+    STORAGE_DEBUG = `Claude storage: ${claudeReason} Netlify: ${netlifyReason}`;
+  }
+
+  function updateStorageBadge(){
+    const el = document.getElementById("storageBadge");
+    const debugEl = document.getElementById("storageDebug");
+    if(!el) return;
+    const copy = {
+      claude: { text: "Synced everywhere — same data on every device", cls: "ok" },
+      netlify: { text: "Synced everywhere — same data on every device", cls: "ok" },
+      memory: { text: "Not connected — changes reset on refresh", cls: "warn" }
+    }[STORAGE_MODE];
+    el.textContent = copy.text;
+    el.className = "storage-badge " + copy.cls;
+    el.title = STORAGE_DEBUG;
+    // Only show the reason text visibly when something's actually wrong —
+    // no need to clutter the footer when everything's working fine.
+    if(debugEl) debugEl.textContent = (STORAGE_MODE === "memory") ? STORAGE_DEBUG : "";
+  }
+
+  // Low-level read/write that hits whichever backend is active. Returns the
+  // raw JSON string (or null if nothing saved yet) for `get`.
+  async function backendGet(key){
+    if(STORAGE_MODE === "claude"){
+      const result = await window.storage.get(key, true);
+      return (result && result.value) ? result.value : null;
+    }
+    if(STORAGE_MODE === "netlify"){
+      const res = await fetch(`${NETLIFY_FN}?key=${encodeURIComponent(key)}`);
+      if(!res.ok) return null;
+      const text = await res.text();
+      return (!text || text === "null") ? null : text;
+    }
+    return null;
+  }
+
+  async function backendSet(key, value){
+    if(STORAGE_MODE === "claude"){
+      await window.storage.set(key, value, true);
+      return;
+    }
+    if(STORAGE_MODE === "netlify"){
+      await fetch(`${NETLIFY_FN}?key=${encodeURIComponent(key)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: value
+      });
+    }
+  }
+
+  async function loadMatches(){
+    if(STORAGE_MODE !== "memory"){
+      try{
+        const raw = await backendGet(STORAGE_KEY);
+        if(raw){
+          const parsed = JSON.parse(raw);
+          let needsSave = false;
+          parsed.forEach(m => { if(!m.id){ m.id = genId(); needsSave = true; } });
+          MATCHES = parsed;
+          if(needsSave) saveMatches();
+          return;
+        }
+      }catch(e){ /* nothing saved yet — keep defaults */ }
+    }
+    MATCHES = cloneDefaults();
+  }
+
+  async function saveMatches(){
+    if(STORAGE_MODE === "memory") return;
+    try{ await backendSet(STORAGE_KEY, JSON.stringify(MATCHES)); }
+    catch(e){
+      console.error("Could not save fixtures:", e);
+      flagSaveFailure(e);
+    }
+  }
+
+  async function loadSquads(){
+    if(STORAGE_MODE !== "memory"){
+      try{
+        const raw = await backendGet(SQUAD_KEY);
+        if(raw){ SQUADS = JSON.parse(raw); return; }
+      }catch(e){ /* nothing saved yet */ }
+    }
+    SQUADS = {};
+  }
+
+  async function saveSquads(){
+    if(STORAGE_MODE === "memory") return;
+    try{ await backendSet(SQUAD_KEY, JSON.stringify(SQUADS)); }
+    catch(e){
+      console.error("Could not save squads:", e);
+      flagSaveFailure(e);
+    }
+  }
+
+  // If a save call fails even after we detected a working backend (e.g. it
+  // stopped responding mid-session), reflect that in the badge immediately
+  // rather than continuing to silently claim everything is synced.
+  function flagSaveFailure(e){
+    STORAGE_DEBUG = "A save just failed: " + (e && e.message ? e.message : e);
+    const el = document.getElementById("storageBadge");
+    const debugEl = document.getElementById("storageDebug");
+    if(el){
+      el.textContent = "Save failed — this change may not have synced";
+      el.className = "storage-badge warn";
+      el.title = STORAGE_DEBUG;
+    }
+    if(debugEl) debugEl.textContent = STORAGE_DEBUG;
+  }
+
+  function getSquad(matchId){
+    if(!SQUADS[matchId]) SQUADS[matchId] = {
+      teamA: { formation: "4-4-2", players: [] },
+      teamB: { formation: "4-4-2", players: [] }
+    };
+    return SQUADS[matchId];
+  }
+
+  // Each formation is described as an ordered list of pitch rows, drawn from
+  // the attacking end down to the goalkeeper. A formation can have more than
+  // one row sharing the same `pos` bucket (e.g. 4-2-3-1 splits its 5 "MID"
+  // players into a 3-player AM row and a 2-player DM row) so the pitch shape
+  // actually matches the name, while selection limits still work off the
+  // flat GK/DEF/MID/FWD totals below.
+  const FORMATIONS = {
+    "4-4-2":   { rows: [ {pos:"FWD",count:2}, {pos:"MID",count:4}, {pos:"DEF",count:4}, {pos:"GK",count:1} ] },
+    "4-3-3":   { rows: [ {pos:"FWD",count:3}, {pos:"MID",count:3}, {pos:"DEF",count:4}, {pos:"GK",count:1} ] },
+    "4-2-3-1": { rows: [ {pos:"FWD",count:1}, {pos:"MID",count:3,label:"AM"}, {pos:"MID",count:2,label:"DM"}, {pos:"DEF",count:4}, {pos:"GK",count:1} ] },
+    "4-5-1":   { rows: [ {pos:"FWD",count:1}, {pos:"MID",count:5}, {pos:"DEF",count:4}, {pos:"GK",count:1} ] },
+    "3-5-2":   { rows: [ {pos:"FWD",count:2}, {pos:"MID",count:5}, {pos:"DEF",count:3}, {pos:"GK",count:1} ] },
+    "3-4-3":   { rows: [ {pos:"FWD",count:3}, {pos:"MID",count:4}, {pos:"DEF",count:3}, {pos:"GK",count:1} ] },
+    "5-3-2":   { rows: [ {pos:"FWD",count:2}, {pos:"MID",count:3}, {pos:"DEF",count:5}, {pos:"GK",count:1} ] },
+    "5-4-1":   { rows: [ {pos:"FWD",count:1}, {pos:"MID",count:4}, {pos:"DEF",count:5}, {pos:"GK",count:1} ] }
+  };
+
+  // Flattens a formation's rows into totals per GK/DEF/MID/FWD bucket —
+  // used for the line-breakdown pills and the per-position selection cap.
+  function posTargets(formationKey){
+    const totals = { GK:0, DEF:0, MID:0, FWD:0 };
+    FORMATIONS[formationKey].rows.forEach(r => { totals[r.pos] += r.count; });
+    return totals;
+  }
+
+  const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+
+  function parseMatchDate(m){
+    const t = (m.timeTBD || !m.time) ? "12:00" : m.time;
+    return new Date(m.date + "T" + t + ":00+05:30");
+  }
+
+  function formatTime12(timeStr){
+    // timeStr is 24hr "HH:MM"
+    const [hStr, mStr] = timeStr.split(":");
+    let h = parseInt(hStr, 10);
+    const period = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if(h === 0) h = 12;
+    return `${h}:${mStr} ${period}`;
+  }
+
+  function render(filter = "all"){
+    const list = document.getElementById("matchList");
+    list.innerHTML = "";
+
+    const sorted = [...MATCHES].sort((a,b) => parseMatchDate(a) - parseMatchDate(b));
+    const filtered = filter === "all" ? sorted : sorted.filter(m => m.competition === filter);
+
+    if(filtered.length === 0){
+      list.innerHTML = '<div class="empty-state">No matches in this competition yet. Tap "Add match" to create one.</div>';
+      return;
+    }
+
+    filtered.forEach(m => {
+      const d = parseMatchDate(m);
+      const idx = MATCHES.indexOf(m);
+      const squad = getSquad(m.id);
+      const startA = squad.teamA.players.filter(p => p.starting).length;
+      const startB = squad.teamB.players.filter(p => p.starting).length;
+      const row = document.createElement("div");
+      row.className = "match-row";
+      row.innerHTML = `
+        <div class="date-block">
+          <div class="day">${String(d.getDate()).padStart(2,'0')}</div>
+          <div class="mon">${monthNames[d.getMonth()]}</div>
+          <div class="yr">${d.getFullYear()}</div>
+        </div>
+        <div class="fixture-main">
+          <div class="comp"><span class="tag">${m.competition}</span></div>
+          <div class="fixture-teams">
+            <span class="team-a">${m.teamA}</span>
+            <span class="vs">vs</span>
+            <span class="team-b">${m.teamB}</span>
+          </div>
+          <div class="fixture-venue">${m.venue || "Venue TBC"}</div>
+          <div class="squad-status">
+            <span class="ss-item ${startA === 11 ? 'ss-full' : ''}"><span class="ss-dot"></span>${m.teamA}: ${startA}/11</span>
+            <span class="ss-item ${startB === 11 ? 'ss-full' : ''}"><span class="ss-dot"></span>${m.teamB}: ${startB}/11</span>
+          </div>
+        </div>
+        <div class="kickoff">
+          <div class="time">${m.timeTBD || !m.time ? "TBD" : formatTime12(m.time)}</div>
+          <div class="ist">${m.timeTBD || !m.time ? "Time not announced" : "IST"}</div>
+        </div>
+        <div class="status-pill ${m.status === 'confirmed' ? 'status-confirmed' : 'status-tentative'}">
+          ${m.status === 'confirmed' ? 'Confirmed' : 'Tentative'}
+        </div>
+        <div class="row-actions">
+          <button type="button" class="xi-btn" data-mid="${m.id}" title="Pick Best XI" aria-label="Pick Best XI">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v6l5 3"/><path d="M7 15l3-2 4 1 3 3"/></svg>
+            <span>XI</span>
+          </button>
+          <button type="button" class="edit-btn" data-idx="${idx}" title="Edit match" aria-label="Edit match">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button type="button" class="del-btn" data-idx="${idx}" title="Delete match" aria-label="Delete match">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+          </button>
+        </div>
+      `;
+      list.appendChild(row);
+    });
+
+    list.querySelectorAll(".xi-btn").forEach(btn => {
+      btn.addEventListener("click", () => openSquadModal(btn.dataset.mid));
+    });
+    list.querySelectorAll(".edit-btn").forEach(btn => {
+      btn.addEventListener("click", () => openEditModal(Number(btn.dataset.idx)));
+    });
+    list.querySelectorAll(".del-btn").forEach(btn => {
+      btn.addEventListener("click", () => deleteMatch(Number(btn.dataset.idx)));
+    });
+  }
+
+  function buildFilters(){
+    const comps = [...new Set(MATCHES.map(m => m.competition))];
+    const wrap = document.getElementById("filters");
+    wrap.innerHTML = '<button class="chip active" data-filter="all">All</button>';
+    comps.forEach(c => {
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.dataset.filter = c;
+      b.textContent = c;
+      wrap.appendChild(b);
+    });
+    wrap.querySelectorAll(".chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        wrap.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        render(chip.dataset.filter);
+      });
+    });
+  }
+
+  function updateCountdown(){
+    const now = new Date();
+    const upcoming = MATCHES
+      .map(parseMatchDate)
+      .filter(d => d > now)
+      .sort((a,b) => a - b)[0];
+
+    if(!upcoming){
+      document.getElementById("countdown").style.display = "none";
+      document.getElementById("countdown-caption").textContent = "No upcoming matches scheduled yet.";
+      return;
+    }
+
+    const diff = upcoming - now;
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById("cd-days").textContent = String(days).padStart(2,'0');
+    document.getElementById("cd-hours").textContent = String(hours).padStart(2,'0');
+    document.getElementById("cd-mins").textContent = String(mins).padStart(2,'0');
+    document.getElementById("cd-secs").textContent = String(secs).padStart(2,'0');
+
+    const match = MATCHES.find(m => parseMatchDate(m).getTime() === upcoming.getTime());
+    document.getElementById("countdown-caption").innerHTML =
+      `Countdown to <b>${match.teamA} vs ${match.teamB}</b> — ${match.competition}` +
+      (match.timeTBD || !match.time ? ` <span style="color:var(--gold)">(exact kickoff time TBD)</span>` : "");
+  }
+
+  // Tiger stripe generator
+  (function buildStripes(){
+    const wrap = document.getElementById("stripes");
+    const count = 14;
+    for(let i=0;i<count;i++){
+      const s = document.createElement("span");
+      s.style.left = (i * (100/count)) + "%";
+      wrap.appendChild(s);
+    }
+  })();
+
+  // Paint immediately with the in-memory defaults so there's no blank
+  // flash, then swap in anything previously saved once storage resolves.
+  buildFilters();
+  render();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  (async () => {
+    await detectStorageMode();
+    updateStorageBadge();
+    await loadMatches();
+    await loadSquads();
+    buildFilters();
+    render();
+    updateCountdown();
+  })();
+
+  // Modal wiring
+  const overlay = document.getElementById("overlay");
+  const panelTitle = document.getElementById("panelTitle");
+  const panelHint = document.getElementById("panelHint");
+  const submitBtn = document.getElementById("submitBtn");
+  const matchForm = document.getElementById("matchForm");
+  const timeInput = document.getElementById("time");
+  const timeTBDCheckbox = document.getElementById("timeTBD");
+  let editingIndex = null;
+
+  function syncTimeField(){
+    if(timeTBDCheckbox.checked){
+      timeInput.disabled = true;
+      timeInput.required = false;
+    } else {
+      timeInput.disabled = false;
+      timeInput.required = true;
+    }
+  }
+  timeTBDCheckbox.addEventListener("change", syncTimeField);
+
+  function openAddModal(){
+    editingIndex = null;
+    matchForm.reset();
+    document.getElementById("teamA").value = "India";
+    syncTimeField();
+    panelTitle.textContent = "Add a match";
+    panelHint.textContent = "Synced automatically — the same data shows up on every device that opens this page.";
+    submitBtn.textContent = "Add match";
+    overlay.classList.add("open");
+  }
+
+  function openEditModal(idx){
+    const m = MATCHES[idx];
+    if(!m) return;
+    editingIndex = idx;
+    document.getElementById("teamA").value = m.teamA;
+    document.getElementById("teamB").value = m.teamB;
+    document.getElementById("date").value = m.date;
+    timeTBDCheckbox.checked = !!m.timeTBD;
+    document.getElementById("time").value = m.timeTBD ? "" : m.time;
+    document.getElementById("competition").value = m.competition;
+    document.getElementById("venue").value = m.venue || "";
+    document.getElementById("statusSel").value = m.status;
+    syncTimeField();
+    panelTitle.textContent = "Edit match";
+    panelHint.textContent = "Update the details below, then save your changes.";
+    submitBtn.textContent = "Save changes";
+    overlay.classList.add("open");
+  }
+
+  function deleteMatch(idx){
+    const m = MATCHES[idx];
+    if(!m) return;
+    const ok = confirm(`Remove ${m.teamA} vs ${m.teamB} (${m.competition}) from the fixture list?`);
+    if(!ok) return;
+    MATCHES.splice(idx, 1);
+    saveMatches();
+    if(SQUADS[m.id]){
+      delete SQUADS[m.id];
+      saveSquads();
+    }
+    buildFilters();
+    render();
+    updateCountdown();
+  }
+
+  document.getElementById("openAddBtn").addEventListener("click", openAddModal);
+  document.getElementById("openAddNav").addEventListener("click", (e) => { e.preventDefault(); openAddModal(); });
+  document.getElementById("cancelAdd").addEventListener("click", () => overlay.classList.remove("open"));
+  overlay.addEventListener("click", (e) => { if(e.target === overlay) overlay.classList.remove("open"); });
+
+  matchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const isTBD = timeTBDCheckbox.checked;
+    const entry = {
+      id: editingIndex !== null ? MATCHES[editingIndex].id : genId(),
+      teamA: document.getElementById("teamA").value,
+      teamB: document.getElementById("teamB").value,
+      competition: document.getElementById("competition").value,
+      date: document.getElementById("date").value,
+      time: isTBD ? "" : document.getElementById("time").value,
+      timeTBD: isTBD,
+      venue: document.getElementById("venue").value,
+      status: document.getElementById("statusSel").value
+    };
+
+    if(editingIndex !== null){
+      MATCHES[editingIndex] = entry;
+    } else {
+      MATCHES.push(entry);
+    }
+    saveMatches();
+
+    buildFilters();
+    render();
+    updateCountdown();
+    e.target.reset();
+    syncTimeField();
+    editingIndex = null;
+    overlay.classList.remove("open");
+  });
+
+  // ------------------------------------------------------------------
+  // Best XI picker
+  // ------------------------------------------------------------------
+  const squadOverlay = document.getElementById("squadOverlay");
+  const squadTitle = document.getElementById("squadTitle");
+  const squadTabA = document.getElementById("squadTabA");
+  const squadTabB = document.getElementById("squadTabB");
+  const squadCounter = document.getElementById("squadCounter");
+  const formationSelect = document.getElementById("formationSelect");
+  const lineBreakdown = document.getElementById("lineBreakdown");
+  const pitchEl = document.getElementById("pitchEl");
+  const rosterEl = document.getElementById("rosterEl");
+  const squadAddForm = document.getElementById("squadAddForm");
+  const squadNameInput = document.getElementById("squadNameInput");
+  const squadPosSelect = document.getElementById("squadPosSelect");
+  const squadCloseBtn = document.getElementById("squadCloseBtn");
+
+  // Populate the formation dropdown once from the FORMATIONS map
+  Object.keys(FORMATIONS).forEach(key => {
+    const opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = key;
+    formationSelect.appendChild(opt);
+  });
+
+  let currentSquadMatchId = null;
+  let currentSquadTeam = "teamA";
+
+  function currentMatch(){
+    return MATCHES.find(m => m.id === currentSquadMatchId);
+  }
+
+  function openSquadModal(matchId){
+    currentSquadMatchId = matchId;
+    currentSquadTeam = "teamA";
+    renderSquadModal();
+    squadOverlay.classList.add("open");
+  }
+
+  function renderSquadModal(){
+    const match = currentMatch();
+    if(!match) return;
+    squadTitle.textContent = `${match.teamA} vs ${match.teamB}`;
+    squadTabA.textContent = match.teamA;
+    squadTabB.textContent = match.teamB;
+    squadTabA.classList.toggle("active", currentSquadTeam === "teamA");
+    squadTabB.classList.toggle("active", currentSquadTeam === "teamB");
+
+    const squad = getSquad(match.id);
+    const side = squad[currentSquadTeam];
+    formationSelect.value = side.formation;
+
+    const players = side.players;
+    const startingCount = players.filter(p => p.starting).length;
+    squadCounter.textContent = `${startingCount} / 11 selected`;
+    squadCounter.classList.toggle("count-complete", startingCount === 11);
+
+    renderLineBreakdown(side);
+    renderPitch(side, currentSquadTeam);
+    renderRoster(side);
+  }
+
+  function renderLineBreakdown(side){
+    const target = posTargets(side.formation);
+    const groups = { GK: [], DEF: [], MID: [], FWD: [] };
+    side.players.filter(p => p.starting).forEach(p => groups[p.pos].push(p));
+    lineBreakdown.innerHTML = ["GK","DEF","MID","FWD"].map(pos => {
+      const have = groups[pos].length;
+      const need = target[pos];
+      const ok = have === need;
+      return `<span class="line-pill ${ok ? 'lp-ok' : ''}"><span class="lp-tag">${pos}</span> ${have}/${need}</span>`;
+    }).join("");
+  }
+
+  // Builds the jersey-shaped SVG icon for a pitch slot. `teamKey` picks the
+  // navy (teamA) or off-white (teamB) kit; goalkeepers always get their own
+  // distinct kit colour regardless of team. Empty slots get a dashed outline.
+  function jerseyIcon(number, teamKey, isGK){
+    const cls = isGK ? "jersey-gk" : (teamKey === "teamA" ? "jersey-teamA" : "jersey-teamB");
+    return `
+      <svg viewBox="0 0 40 40" class="jersey-svg ${cls}">
+        <path class="jersey-path" d="M12 4 L16 2 Q20 6 24 2 L28 4 L34 10 L30 14 L28 12 L28 34 Q20 36.5 12 34 L12 12 L10 14 L6 10 Z"/>
+        <text class="jersey-num" x="20" y="25">${number}</text>
+      </svg>`;
+  }
+
+  function emptyJerseyIcon(label){
+    return `
+      <svg viewBox="0 0 40 40" class="jersey-svg jersey-empty-svg">
+        <path class="jersey-path" d="M12 4 L16 2 Q20 6 24 2 L28 4 L34 10 L30 14 L28 12 L28 34 Q20 36.5 12 34 L12 12 L10 14 L6 10 Z"/>
+      </svg>`;
+  }
+
+  // Finds the lowest shirt number (1–99) not already taken by another
+  // player on the same team, so new players get a sensible default that
+  // the person can still edit by hand afterwards.
+  function nextAvailableNumber(players){
+    const used = new Set(players.map(p => p.number));
+    for(let n=1; n<=99; n++){ if(!used.has(n)) return n; }
+    return 1;
+  }
+
+  function renderPitch(side, teamKey){
+    const rows = FORMATIONS[side.formation].rows;
+    const groups = { GK: [], DEF: [], MID: [], FWD: [] };
+    side.players.filter(p => p.starting).forEach(p => groups[p.pos].push(p));
+
+    const hasAny = side.players.some(p => p.starting);
+
+    // `rows` is already ordered attack-to-goal (FWD first, GK last), which is
+    // how we want it to read top-to-bottom on the pitch. When two rows share
+    // the same pos bucket (e.g. AM then DM, both "MID"), we consume starters
+    // for that bucket in order so each row gets its own distinct players.
+    const pointer = { GK:0, DEF:0, MID:0, FWD:0 };
+    const rowsHtml = rows.map(r => {
+      const filled = groups[r.pos];
+      const slots = [];
+      for(let i=0;i<r.count;i++){
+        const p = filled[pointer[r.pos]];
+        if(p){
+          pointer[r.pos]++;
+          slots.push(`
+            <div class="player-chip" title="${p.name} — #${p.number} (${p.pos}${r.label ? ' · ' + r.label : ''})">
+              ${jerseyIcon(p.number, teamKey, p.pos === 'GK')}
+              <div class="p-name">${p.name}</div>
+            </div>`);
+        } else {
+          slots.push(`
+            <div class="player-chip empty-slot" title="Empty ${r.label || r.pos} slot">
+              ${emptyJerseyIcon(r.label || r.pos)}
+              <div class="p-name p-name-empty">Empty</div>
+            </div>`);
+        }
+      }
+      const tag = `<div class="row-tag">${r.label || r.pos}</div>`;
+      return `<div class="pitch-line">${tag}<div class="pitch-row">${slots.join("")}</div></div>`;
+    }).join("");
+
+    pitchEl.innerHTML = `<div class="goal-box"></div>${rowsHtml}`;
+    if(!hasAny){
+      pitchEl.innerHTML += `<div class="pitch-empty">Add players below, pick a formation, then tick a box to fill your Best XI.</div>`;
+    }
+  }
+
+  function renderRoster(side){
+    const players = side.players;
+    const target = posTargets(side.formation);
+    const startingCount = players.filter(p => p.starting).length;
+
+    if(players.length === 0){
+      rosterEl.innerHTML = '<div class="roster-empty">No players added yet. Use the form above to build the squad.</div>';
+      return;
+    }
+
+    const groups = { GK: [], DEF: [], MID: [], FWD: [] };
+    players.filter(p => p.starting).forEach(p => groups[p.pos].push(p));
+
+    rosterEl.innerHTML = players.map(p => {
+      const lineFull = groups[p.pos].length >= target[p.pos];
+      const disable = !p.starting && (startingCount >= 11 || lineFull);
+      return `<div class="roster-row ${p.starting ? 'is-starting' : ''}">
+        <label class="roster-check">
+          <input type="checkbox" data-pid="${p.id}" ${p.starting ? "checked" : ""} ${disable ? "disabled" : ""}>
+        </label>
+        <input type="number" class="roster-num" data-pid="${p.id}" value="${p.number}" min="1" max="99" aria-label="Shirt number for ${p.name}">
+        <span class="roster-name">${p.name}</span>
+        <span class="roster-pos pos-${p.pos}">${p.pos}</span>
+        <button type="button" class="roster-del" data-pid="${p.id}" aria-label="Remove ${p.name}">✕</button>
+      </div>`;
+    }).join("");
+
+    rosterEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener("change", () => toggleStarting(cb.dataset.pid, cb.checked));
+    });
+    rosterEl.querySelectorAll('input.roster-num').forEach(input => {
+      input.addEventListener("change", () => updatePlayerNumber(input.dataset.pid, input.value));
+    });
+    rosterEl.querySelectorAll(".roster-del").forEach(btn => {
+      btn.addEventListener("click", () => removePlayer(btn.dataset.pid));
+    });
+  }
+
+  // Lets the user hand-edit a player's shirt number from the roster list.
+  // Keeps numbers unique within the team — reverts with a warning on clash.
+  function updatePlayerNumber(pid, rawValue){
+    const squad = getSquad(currentSquadMatchId);
+    const side = squad[currentSquadTeam];
+    const p = side.players.find(pl => pl.id === pid);
+    if(!p) return;
+
+    const n = parseInt(rawValue, 10);
+    if(!n || n < 1 || n > 99){
+      renderSquadModal();
+      return;
+    }
+    const clash = side.players.some(pl => pl.id !== pid && pl.number === n);
+    if(clash){
+      alert(`#${n} is already taken by another player on this team.`);
+      renderSquadModal();
+      return;
+    }
+    p.number = n;
+    saveSquads();
+    renderSquadModal();
+    render();
+  }
+
+  function toggleStarting(pid, checked){
+    const squad = getSquad(currentSquadMatchId);
+    const side = squad[currentSquadTeam];
+    const target = posTargets(side.formation);
+    const startingCount = side.players.filter(p => p.starting).length;
+    const p = side.players.find(pl => pl.id === pid);
+    if(!p) return;
+
+    if(checked){
+      const lineCount = side.players.filter(pl => pl.starting && pl.pos === p.pos).length;
+      if(startingCount >= 11 || lineCount >= target[p.pos]){ renderSquadModal(); return; }
+    }
+    p.starting = checked;
+    saveSquads();
+    renderSquadModal();
+    render();
+  }
+
+  function removePlayer(pid){
+    const squad = getSquad(currentSquadMatchId);
+    const side = squad[currentSquadTeam];
+    side.players = side.players.filter(p => p.id !== pid);
+    saveSquads();
+    renderSquadModal();
+    render();
+  }
+
+  squadTabA.addEventListener("click", () => { currentSquadTeam = "teamA"; renderSquadModal(); });
+  squadTabB.addEventListener("click", () => { currentSquadTeam = "teamB"; renderSquadModal(); });
+
+  formationSelect.addEventListener("change", () => {
+    const squad = getSquad(currentSquadMatchId);
+    const side = squad[currentSquadTeam];
+    const newTarget = posTargets(formationSelect.value);
+    side.formation = formationSelect.value;
+    // Trim any excess starters per line so the new formation's slot counts are respected
+    const groups = { GK: [], DEF: [], MID: [], FWD: [] };
+    side.players.filter(p => p.starting).forEach(p => groups[p.pos].push(p));
+    ["GK","DEF","MID","FWD"].forEach(pos => {
+      const excess = groups[pos].length - newTarget[pos];
+      if(excess > 0){
+        groups[pos].slice(-excess).forEach(p => { p.starting = false; });
+      }
+    });
+    saveSquads();
+    renderSquadModal();
+    render();
+  });
+
+  squadAddForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = squadNameInput.value.trim();
+    const pos = squadPosSelect.value;
+    if(!name || !currentSquadMatchId) return;
+    const squad = getSquad(currentSquadMatchId);
+    const side = squad[currentSquadTeam];
+    side.players.push({
+      id: "p-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2,6),
+      name,
+      pos,
+      starting: false,
+      number: nextAvailableNumber(side.players)
+    });
+    saveSquads();
+    squadNameInput.value = "";
+    squadNameInput.focus();
+    renderSquadModal();
+    render();
+  });
+
+  squadCloseBtn.addEventListener("click", () => squadOverlay.classList.remove("open"));
+  squadOverlay.addEventListener("click", (e) => { if(e.target === squadOverlay) squadOverlay.classList.remove("open"); });
+
+
+</script>
+
+</body>
+</html>
